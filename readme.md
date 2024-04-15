@@ -1,10 +1,11 @@
 Template not autarization
 
-dependencies
--express
--mongoose
--express-handlebars
+dependencies  
+-express  
+-mongoose  
+-express-handlebars  
 
+```
 project
 |-\app
 |	|-\router
@@ -18,3 +19,4 @@ project
 |	|-\partials
 |		|-\header.hbs
 |		|-\footer.hbs
+```
