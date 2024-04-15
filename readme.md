@@ -15,13 +15,13 @@ project
 |	|-\models
 |		|-PostModel.js
 |
-|-\views
-|	|-\layouts
+|-views
+|	|-layouts
 |	|	|-main.hbs
-|	|-\partials
+|	|-partials
 |	|	|-header.hbs
 |	|	|-footer.hbs
-|	|-\blog.hbs
+|	|-blog.hbs
 |
 |-index.js
 |-package.json
