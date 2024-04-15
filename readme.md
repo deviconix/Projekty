@@ -9,14 +9,20 @@ dependencies
 project
 |-\app
 |	|-\router
-|		|-\BlogRoute.js
-|		|-\controllers
-|		|-\models
+|	|	|-\BlogRoute.js
+|	|-\controllers
+|	|	|-\PostController.js
+|	|-\models
+|		|-\PostModel.js
 |
 |-\views
 |	|-\layouts
-|		|-\main.hbs
+|	|	|-\main.hbs
 |	|-\partials
-|		|-\header.hbs
-|		|-\footer.hbs
+|	|	|-\header.hbs
+|	|	|-\footer.hbs
+|	|-\blog.hbs
+|
+|-\index.js
+|-\package.json
 ```
