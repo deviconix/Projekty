@@ -7,22 +7,22 @@ dependencies
 
 ```
 project
-|-\app
-|	|-\router
-|	|	|-\BlogRoute.js
-|	|-\controllers
-|	|	|-\PostController.js
+|-app
+|	|-router
+|	|	|-BlogRoute.js
+|	|-controllers
+|	|	|-PostController.js
 |	|-\models
-|		|-\PostModel.js
+|		|-PostModel.js
 |
 |-\views
 |	|-\layouts
-|	|	|-\main.hbs
+|	|	|-main.hbs
 |	|-\partials
-|	|	|-\header.hbs
-|	|	|-\footer.hbs
+|	|	|-header.hbs
+|	|	|-footer.hbs
 |	|-\blog.hbs
 |
-|-\index.js
-|-\package.json
+|-index.js
+|-package.json
 ```
