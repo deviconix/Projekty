@@ -2,15 +2,12 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const userRouter = require('./app/router/userRouter');
-// CONST
-// app
-const APP_PORT = 8080;
-// db
-const MONGO_DB_HOST = 'mongodb://127.0.0.1';
-const MONGO_DB_PORT = 27017;
-const MONGO_DB_NAME = 'express01';
-const PATH_DB = `${MONGO_DB_HOST}:${MONGO_DB_PORT}/${MONGO_DB_NAME}`;
 
+require('dotenv').config();
+
+const MONGO_DB_URL = process.env.MONGO_DB_URL;
+const APP_PORT = process.env.APP_PORT;
+console.log(MONGO_DB_URL);
 // create app
 const app = express();
 
@@ -19,11 +16,17 @@ app.engine("hbs", hbs.engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
 
 // connect to base
-mongoose.connect(PATH_DB);
+mongoose.connect(MONGO_DB_URL);
 const db = mongoose.connection;
 db.on('error', function (err) {
     console.error('Error connect :', err);
 });
+db.once('open', () => {
+    console.log('Connect to db - OK');
+    // Здесь можно добавить дополнительные действия после успешного подключения
+});
+
+
 
 // route root
 app.get('/', function (req, res) {
