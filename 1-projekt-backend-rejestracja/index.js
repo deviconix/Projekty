@@ -1,4 +1,6 @@
 const express = require('express');
+const databaseService = require('./app/services/databaseService');
+
 const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const userRouter = require('./app/router/userRouter');
@@ -15,16 +17,19 @@ const app = express();
 app.engine("hbs", hbs.engine({ extname: ".hbs" }));
 app.set("view engine", "hbs");
 
+// Connect to the database
+databaseService(MONGO_DB_URL);
+
 // connect to base
-mongoose.connect(MONGO_DB_URL);
-const db = mongoose.connection;
-db.on('error', function (err) {
-    console.error('Error connect :', err);
-});
-db.once('open', () => {
-    console.log('Connect to db - OK');
-    // Здесь можно добавить дополнительные действия после успешного подключения
-});
+// mongoose.connect(MONGO_DB_URL);
+// const db = mongoose.connection;
+// db.on('error', function (err) {
+//     console.error('Error connect :', err);
+// });
+// db.once('open', () => {
+//     console.log('Connect to db - OK');
+//     // Здесь можно добавить дополнительные действия после успешного подключения
+// });
 
 
 
