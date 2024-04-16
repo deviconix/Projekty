@@ -2,6 +2,7 @@ const User = require('../models/UserModel');
 
 module.exports = {
     index: async (req, res) => {
+        console.log('index')
         try {
             const users = await User.find({}).lean({ virtuals: true });
             res.render("users", {
