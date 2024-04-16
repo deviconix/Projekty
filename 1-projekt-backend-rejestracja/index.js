@@ -1,6 +1,7 @@
 const databaseService = require('./app/services/databaseService');
 const expressService = require('./app/services/expressService');
 const userRouter = require('./app/router/userRouter');
+const registrationRouter = require('./app/router/registrationRouter');
 
 require('dotenv').config();
 
@@ -21,17 +22,20 @@ app.get('/', function (req, res) {
 
 
 // Middleware для логирования
-const userMiddleware = (req, res, next) => {
-    console.log('Запрос к маршрутам пользователя');
-    next(); // Передаем управление следующему middleware или обработчику маршрута
-};
+// const userMiddleware = (req, res, next) => {
+//     console.log('Запрос к маршрутам пользователя 2');
+//     next(); // Передаем управление следующему middleware или обработчику маршрута
+// };
 
 // Routes
-//app.use("user", userRouter);
-app.use("/user", userMiddleware, userRouter);
+// user - demo 
+app.use("/user", userRouter);
+//app.use("/user", userMiddleware, userRouter);
 // app.get("/user", function () {
 //     console.log('index user');
 // });
+
+app.use("/form-registration", registrationRouter);
 
 // Run server
 app.listen(APP_PORT, function () {
