@@ -18,10 +18,10 @@ const index = async (req, res) => {
 // INSERT
 const add = async (req, res) => {
     try {
-        const applications = await formRegistrationService.getAllApplications();
+        //const applications = await formRegistrationService.getAllApplications();
         // const applications = '<p>Please wait...</p>'
-        res.send(applications);
-
+        //res.send(applications);
+        res.redirect('/form-registration');
         // render hbs
     } catch (error) {
         console.error(error);
@@ -32,10 +32,10 @@ const add = async (req, res) => {
 // DELETE
 const drop = async (req, res) => {
     try {
-        const applications = await formRegistrationService.getAllApplications();
+        //const applications = await formRegistrationService.getAllApplications();
         // const applications = '<p>Please wait...</p>'
-        res.send(applications);
-
+        //res.send(applications);
+        res.redirect('/form-registration');
         // render hbs
     } catch (error) {
         console.error(error);
