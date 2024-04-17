@@ -37,6 +37,9 @@ app.use("/user", userRouter);
 
 app.use("/form-registration", registrationRouter);
 
+// form action
+//app.use("/training", trainingRouter);
+
 // Run server
 app.listen(APP_PORT, function () {
     console.log('Listen port :', APP_PORT);
