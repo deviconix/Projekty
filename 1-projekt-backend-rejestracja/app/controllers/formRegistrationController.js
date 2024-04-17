@@ -1,8 +1,8 @@
-const registrationService = require('../services/registrationService');
+const formRegistrationService = require('../services/formRegistrationService');
 
 const index = async (req, res) => {
     try {
-        const applications = await registrationService.getAllApplications();
+        const applications = await formRegistrationService.getAllApplications();
         // const applications = '<p>Please wait...</p>'
         res.send(applications);
 

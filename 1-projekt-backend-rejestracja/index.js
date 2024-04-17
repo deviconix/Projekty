@@ -1,7 +1,7 @@
 const databaseService = require('./app/services/databaseService');
 const expressService = require('./app/services/expressService');
 const userRouter = require('./app/router/userRouter');
-const registrationRouter = require('./app/router/registrationRouter');
+const formRegistrationRouter = require('./app/router/formRegistrationRouter');
 
 require('dotenv').config();
 
@@ -35,10 +35,10 @@ app.use("/user", userRouter);
 //     console.log('index user');
 // });
 
-app.use("/form-registration", registrationRouter);
+app.use("/form-registration", formRegistrationRouter);
 
 // form action
-//app.use("/training", trainingRouter);
+//app.use("/training", trainingRouter)
 
 // Run server
 app.listen(APP_PORT, function () {

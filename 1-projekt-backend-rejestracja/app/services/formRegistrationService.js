@@ -1,9 +1,9 @@
-const Registration = require('../models/Registration');
+const Training = require('../models/Training');
 
 const getAllApplications = async () => {
     try {
         return 'model data';
-        return await Registration.find({});
+        return await Training.find({});
     } catch (error) {
         throw new Error('Ошибка при получении пользователей');
     }
