@@ -6,7 +6,7 @@ const formRegistrationController = require('../controllers/formRegistrationContr
 // });
 
 router.get('/', formRegistrationController.index);
-router.post('/add', formRegistrationController.index);
-router.get('/delete', formRegistrationController.index);// ?
+router.post('/add', formRegistrationController.add);
+router.get('/delete', formRegistrationController.drop);// ?
 
 module.exports = router;
