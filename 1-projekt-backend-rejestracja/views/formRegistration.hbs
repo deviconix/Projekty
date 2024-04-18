@@ -97,12 +97,15 @@
         {{/if}}
         {{#each trainings}}
           <tr>
-            <th scope='row'>{{@index}}</th>
+            <th scope='row'>{{indexInc @index}}</th>
             <td>{{fullname}}</td>
             <td>{{training}}</td>
             <td>{{place}}</td>
-            <td><button type='button' class='btn btn-outline-danger'>drop
-                {{_id}}</button></td>
+            <td><a
+                class='btn btn-outline-danger'
+                href='/form-registration/delete/{{_id}}'
+              >drop
+              </a></td>
           </tr>
         {{/each}}
       </tbody>

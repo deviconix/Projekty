@@ -4,7 +4,7 @@ const getAllTrainings = async () => {
     try {
         //return 'model data';
         const trainings = await Training.find({}).lean();
-        const formRegistration = {};
+        const formRegistration = {};// serviceFormBuild.RegistrationTraining()
         const validationFormRegistration = {}; // res.flash midleware and value all elements form
         console.log(trainings);
         return { formRegistration, validationFormRegistration, trainings };
@@ -16,13 +16,14 @@ const getAllTrainings = async () => {
 const createTraining = async (trainingData) => {
     try {
         //return 'model data';
-        const newTraining = Training(trainingData.body);
         try {
+            const newTraining = await Training(trainingData.body);
+
             await newTraining.save();
             //res.redirect('/blog');
         } catch (err) {
             if (err.code === 11000) {
-                res.render('userViews/signupUser', {
+                res.render('userViews/signupUser', { // ??? на root
                     error: true,
                     message: "User already exist",
                     user: req.body
@@ -45,7 +46,15 @@ const createTraining = async (trainingData) => {
     }
 };
 
-const deleteTrainingById = async (trainingId) => { /* Удаление товара по ID */ };
+const deleteTrainingById = async (req) => {
+    /* Удаление товара по ID */
+    try {
+        await Training.findByIdAndDelete(req.params.id);
+        //res.redirect('/blog');
+    } catch (err) {
+        console.log('service:registrarion delete');
+    }
+};
 
 module.exports = {
     getAllTrainings,

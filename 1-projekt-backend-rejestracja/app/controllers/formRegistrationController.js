@@ -17,11 +17,7 @@ const index = async (req, res) => {
 // INSERT
 const add = async (req, res) => {
     try {
-        // return {form,validation<{validationName,validationTrainig,validationPlace}>,table[<Training>]}
-        //const applications = 
         await formRegistrationService.createTraining(req);
-        // const applications = '<p>Please wait...</p>'
-        //res.send(applications);
         console.log('controller add');
         res.redirect('/form-registration');
         // render hbs
@@ -34,9 +30,8 @@ const add = async (req, res) => {
 // DELETE
 const drop = async (req, res) => {
     try {
-        //const applications = await formRegistrationService.getAllApplications();
-        // const applications = '<p>Please wait...</p>'
-        //res.send(applications);
+        await formRegistrationService.deleteTrainingById(req);
+        console.log('controller delete');
         res.redirect('/form-registration');
         // render hbs
     } catch (error) {
