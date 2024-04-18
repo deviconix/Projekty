@@ -3,10 +3,10 @@ const Training = require('../models/Training');
 const getAllTrainings = async () => {
     try {
         //return 'model data';
-        const trainings = await Training.find({});
+        const trainings = await Training.find({}).lean();
         const formRegistration = {};
         const validationFormRegistration = {}; // res.flash midleware and value all elements form
-
+        console.log(trainings);
         return { formRegistration, validationFormRegistration, trainings };
     } catch (error) {
         throw new Error('Ошибка при получении пользователей');

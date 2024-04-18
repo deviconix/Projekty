@@ -90,16 +90,21 @@
               class='btn btn-outline-danger'
             >drop</button></td>
         </tr>
-        <tr>
-          <th scope='row'>3</th>
-          <td>Larry the Bird</td>
-          <td>@twitter</td>
-          <td>@twitter</td>
-          <td><button
-              type='button'
-              class='btn btn-outline-danger'
-            >drop</button></td>
-        </tr>
+
+        {{#if trainings}}
+          <h1>list[]</h1>
+
+        {{/if}}
+        {{#each trainings}}
+          <tr>
+            <th scope='row'>{{@index}}</th>
+            <td>{{fullname}}</td>
+            <td>{{training}}</td>
+            <td>{{place}}</td>
+            <td><button type='button' class='btn btn-outline-danger'>drop
+                {{_id}}</button></td>
+          </tr>
+        {{/each}}
       </tbody>
     </table>
 
