@@ -70,44 +70,23 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope='row'>1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td><button
-              type='button'
-              class='btn btn-outline-danger'
-            >drop</button></td>
-        </tr>
-        <tr>
-          <th scope='row'>2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td><button
-              type='button'
-              class='btn btn-outline-danger'
-            >drop</button></td>
-        </tr>
-
         {{#if trainings}}
           <h1>list[]</h1>
-
+          {{#each trainings}}
+            <tr>
+              <th scope='row'>{{indexInc @index}}</th>
+              <td>{{fullname}}</td>
+              <td>{{training}}</td>
+              <td>{{place}}</td>
+              <td><a
+                  class='btn btn-outline-danger'
+                  href='/form-registration/delete/{{_id}}'
+                >drop
+                </a></td>
+            </tr>
+          {{/each}}
         {{/if}}
-        {{#each trainings}}
-          <tr>
-            <th scope='row'>{{indexInc @index}}</th>
-            <td>{{fullname}}</td>
-            <td>{{training}}</td>
-            <td>{{place}}</td>
-            <td><a
-                class='btn btn-outline-danger'
-                href='/form-registration/delete/{{_id}}'
-              >drop
-              </a></td>
-          </tr>
-        {{/each}}
+
       </tbody>
     </table>
 
