@@ -18,10 +18,11 @@ const index = async (req, res) => {
 const add = async (req, res) => {
     try {
         // return {form,validation<{validationName,validationTrainig,validationPlace}>,table[<Training>]}
-        const applications = await formRegistrationService.getAllTrainings();
+        //const applications = 
+        await formRegistrationService.createTraining(req);
         // const applications = '<p>Please wait...</p>'
         //res.send(applications);
-        console.log('add');
+        console.log('controller add');
         res.redirect('/form-registration');
         // render hbs
     } catch (error) {

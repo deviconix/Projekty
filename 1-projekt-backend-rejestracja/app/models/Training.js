@@ -5,7 +5,8 @@ const trainingSchema = new Schema(
     {
         name: String,
         sornname: String,
-        direction: String, // js, css
+        fullname: String,
+        training: String, // js, css
         place: String, // online, city
     },
     { timestamps: true }
