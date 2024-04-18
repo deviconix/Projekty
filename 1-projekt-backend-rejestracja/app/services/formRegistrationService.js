@@ -1,14 +1,24 @@
 const Training = require('../models/Training');
 
-const getAllApplications = async () => {
+const getAllTrainings = async () => {
     try {
         //return 'model data';
-        return await Training.find({});
+        const trainings = await Training.find({});
+        const formRegistration = {};
+        const validationFormRegistration = {}; // res.flash midleware and value all elements form
+
+        return { formRegistration, validationFormRegistration, trainings };
     } catch (error) {
         throw new Error('Ошибка при получении пользователей');
     }
 };
 
+const createTraining = async (trainingData) => { /* Создание нового товара */ };
+
+const deleteTrainingById = async (trainingId) => { /* Удаление товара по ID */ };
+
 module.exports = {
-    getAllApplications
+    getAllTrainings,
+    createTraining,
+    deleteTrainingById
 };

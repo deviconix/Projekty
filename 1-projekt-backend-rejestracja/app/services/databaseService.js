@@ -7,7 +7,7 @@ function connectToDatabase(path) {
         console.error('Error connecting to database:', err);
     });
     db.once('open', () => {
-        console.log('Connect to mongodb.');
+        console.log(`Connect to ${process.env.MONGO_DB_URL}`);
         // Здесь можно добавить дополнительные действия после успешного подключения
     });
     return db;
