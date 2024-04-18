@@ -1,8 +1,92 @@
-<form action='form-registration/add' method='post'>
-  <input type='text' />
-  <input type='submit' value='Registration' />
-</form>
+<div class='container'>
+  <div class='row justify-content-center'>
+    <form action='form-registration/add' method='post' class='col-4'>
 
-<p>Block Error</p>
+      <div class='mb-3'>
+        <label for='fullname' class='form-label'>Name Surname</label>
+        <input type='text' class='form-control' id='fullname' name='fullname' />
+      </div>
 
-<div> Block table</div>
+      <div class='mb-3'>
+        <label class='form-label'>Select kurs</label>
+        <select class='form-select' name='training'>
+          <option selected>--------------------</option>
+          <option value='Frontend'>Frontend</option>
+          <option value='Backend'>Backend</option>
+          <option value='Fullstack'>Fullstack</option>
+        </select>
+      </div>
+
+      <div class='mb-3'>
+        <label class='form-label'>Select place study</label>
+        <select class='form-select' name='place'>
+          <option selected>--------------------</option>
+          <option value='Warszawa'>Warszawa</option>
+          <option value='Krakow'>Krakow</option>
+          <option value='Online'>Online</option>
+        </select>
+      </div>
+
+      <button type='submit' class='btn btn-primary'>Registration</button>
+    </form>
+  </div>
+
+  <div>Block Error
+    <div class='alert alert-danger' role='alert'>
+      err fullname
+    </div>
+    <div class='alert alert-danger' role='alert'>
+      select kurs
+    </div>
+    <div class='alert alert-danger' role='alert'>
+      select place
+    </div>
+  </div>
+
+  <div>
+    <table class='table table-striped table-hover'>
+      <thead class='table-dark'>
+        <tr>
+          <th scope='col'>#</th>
+          <th scope='col'>Name</th>
+          <th scope='col'>Kurs</th>
+          <th scope='col'>Place</th>
+          <th scope='col'>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope='row'>1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td><button
+              type='button'
+              class='btn btn-outline-danger'
+            >drop</button></td>
+        </tr>
+        <tr>
+          <th scope='row'>2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td><button
+              type='button'
+              class='btn btn-outline-danger'
+            >drop</button></td>
+        </tr>
+        <tr>
+          <th scope='row'>3</th>
+          <td>Larry the Bird</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+          <td><button
+              type='button'
+              class='btn btn-outline-danger'
+            >drop</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

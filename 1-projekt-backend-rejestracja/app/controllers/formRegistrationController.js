@@ -18,9 +18,10 @@ const index = async (req, res) => {
 // INSERT
 const add = async (req, res) => {
     try {
-        //const applications = await formRegistrationService.getAllApplications();
+        const applications = await formRegistrationService.getAllApplications();
         // const applications = '<p>Please wait...</p>'
         //res.send(applications);
+        console.log();
         res.redirect('/form-registration');
         // render hbs
     } catch (error) {
