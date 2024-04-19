@@ -3,6 +3,8 @@ const hbs = require('express-handlebars');
 
 const bodyParser = require('body-parser');
 
+const session = require('express-session');
+
 function configureExpress() {
     const app = express();
 
@@ -19,6 +21,14 @@ function configureExpress() {
     // init body-parser
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
+
+    // session
+    // Устанавливаем промежуточное программное обеспечение для сессий
+    app.use(session({
+        secret: 'your-secret-key-1', // Секретный ключ для подписания сессионных куков
+        resave: false,
+        saveUninitialized: true
+    }));
     return app;
 }
 
