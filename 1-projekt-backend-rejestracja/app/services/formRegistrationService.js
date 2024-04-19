@@ -26,7 +26,7 @@ const createTraining = async (req, res) => {
         req.session.errorsSession = errors;
         req.session.formCurrent = req.body;
     } else {
-
+        req.session.errorsSession = [];
         // check select data
         try {
 
