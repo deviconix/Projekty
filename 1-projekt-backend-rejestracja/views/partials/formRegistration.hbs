@@ -1,0 +1,29 @@
+<form action='form-registration/add' method='post' class='col-4'>
+
+  <div class='mb-3'>
+    <label for='fullname' class='form-label'>Full name</label>
+    <input type='text' class='form-control' id='fullname' name='fullname' />
+  </div>
+
+  <div class='mb-3'>
+    <label class='form-label'>Select kurs</label>
+    <select class='form-select' name='training'>
+      <option value='' selected>--------------------</option>
+      <option value='Frontend'>Frontend</option>
+      <option value='Backend'>Backend</option>
+      <option value='Fullstack'>Fullstack</option>
+    </select>
+  </div>
+
+  <div class='mb-3'>
+    <label class='form-label'>Select place study</label>
+    <select class='form-select' name='place'>
+      <option value='' selected>--------------------</option>
+      <option value='Warszawa'>Warszawa</option>
+      <option value='Krakow'>Krakow</option>
+      <option value='Online'>Online</option>
+    </select>
+  </div>
+
+  <button type='submit' class='btn btn-primary'>Registration</button>
+</form>
