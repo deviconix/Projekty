@@ -24,11 +24,21 @@ function configureExpress() {
 
     // session
     // Устанавливаем промежуточное программное обеспечение для сессий
+    // app.use(session({
+    //     secret: 'your-secret-key-1', // Секретный ключ для подписания сессионных куков
+    //     resave: false,
+    //     saveUninitialized: true,
+    //     cookie: {
+    //         secure: true
+    //     }
+    // }));
+
     app.use(session({
-        secret: 'your-secret-key-1', // Секретный ключ для подписания сессионных куков
-        resave: false,
-        saveUninitialized: true
+        secret: 'mySecretKey', // Секретный ключ для подписи куки
+        resave: false, // Не сохранять сессию, если она не изменилась
+        saveUninitialized: true, // Сохранять сессию, даже если она не инициализирована
     }));
+
     return app;
 }
 

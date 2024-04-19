@@ -1,17 +1,22 @@
 const formRegistrationService = require('../services/formRegistrationService');
 //not work const { validationResult } = require('express-validator');
 // INDEX
+const { validationResult } = require('express-validator');
+
 const index = async (req, res) => {
     try {
-        const data = await formRegistrationService.getAllTrainings();
-        const { formRegistration, validationFormRegistration, trainings } = data;
-
-        //not work const errors2 = validationResult(req);
-        const errors2 = res.locals.err;
-        console.log(errors2);
+        const data = await formRegistrationService.getAllTrainings(req, res);// ? req and res
+        const { formRegistration, validationErr, trainings } = data;
 
 
-        res.render('formRegistration', { formRegistration, validationFormRegistration, trainings });
+        //const validationErr = req.session.errorsSession;
+        //console.log(errors2);
+        console.log('validationErr');
+        console.log(validationErr);
+        console.log(formRegistration);
+
+
+        res.render('formRegistration', { formRegistration, validationErr, trainings });
 
     } catch (error) {
         console.error(error);
@@ -22,8 +27,14 @@ const index = async (req, res) => {
 // INSERT
 const add = async (req, res) => {
     try {
+
         await formRegistrationService.createTraining(req);
-        console.log('controller add');
+
+        // const errors = validationResult(req);
+
+        // req.session.errorsSession = errors;
+        // req.session.formCurrent = req.body;
+
         res.redirect('/form-registration');
         // render hbs
     } catch (error) {

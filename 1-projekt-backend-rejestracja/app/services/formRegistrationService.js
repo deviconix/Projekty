@@ -1,31 +1,32 @@
 const Training = require('../models/Training');
+//
 const { validationResult } = require('express-validator');
 
-const getAllTrainings = async () => {
+const getAllTrainings = async (req, res) => {
     try {
+        //console.log(req);
         //return 'model data';
         const trainings = await Training.find({}).lean();
-        const formRegistration = {};// serviceFormBuild.RegistrationTraining()
-        const validationFormRegistration = {}; // res.flash midleware and value all elements form
+        const formRegistration = req.session.formCurrent;// serviceFormBuild.RegistrationTraining()
+        const validationErr = req.session.errorsSession; // res.flash midleware and value all elements form
         console.log(trainings);
-        return { formRegistration, validationFormRegistration, trainings };
+        return { formRegistration, validationErr, trainings };
     } catch (error) {
+        console.log(error)
         throw new Error('Get Training err');
     }
 };
 
 const createTraining = async (req, res) => {
-    // check err
+
     const errors = validationResult(req);
     //console.log(errors);
     // check validate
     if (!errors.isEmpty()) {
-        // err
-        // flash
-        //req.flash('error', errors);
-        res.locals.err = errors;
+        req.session.errorsSession = errors;
+        req.session.formCurrent = req.body;
     } else {
-        // next()
+
         // check select data
         try {
 
@@ -49,12 +50,6 @@ const createTraining = async (req, res) => {
                 }
             }
 
-
-            const trainings = await Training.find({}).lean();
-            const formRegistration = {};
-            const validationFormRegistration = {}; // res.flash midleware and value all elements form
-            console.log(trainings);
-            return { formRegistration, validationFormRegistration, trainings };
         } catch (error) {
             throw new Error('Ошибка при получении пользователей');
         }
