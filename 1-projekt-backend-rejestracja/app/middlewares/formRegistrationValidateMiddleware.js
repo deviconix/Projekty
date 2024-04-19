@@ -5,15 +5,15 @@ const { body } = require('express-validator');
 const validateForm = [
     // Определение правил валидации для каждого поля формы
     body('fullname')
-        .notEmpty().withMessage('Поле "Имя пользователя" не должно быть пустым')
+        .notEmpty().withMessage('The "Full name" field must not be empty')
         .trim()
         .escape(),
     body('training')
-        .notEmpty().withMessage('Поле "Имя пользователя 2 " не должно быть пустым')
+        .notEmpty().withMessage('The "Training" field must not be empty')
         .trim()
         .escape(),
     body('place')
-        .notEmpty().withMessage('Поле "Имя пользователя 3" не должно быть пустым')
+        .notEmpty().withMessage('The "Place" field must not be empty')
         .trim()
         .escape(),
     // Другие правила валидации...

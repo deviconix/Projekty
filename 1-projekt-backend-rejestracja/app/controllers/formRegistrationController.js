@@ -1,10 +1,15 @@
 const formRegistrationService = require('../services/formRegistrationService');
-
+//not work const { validationResult } = require('express-validator');
 // INDEX
 const index = async (req, res) => {
     try {
         const data = await formRegistrationService.getAllTrainings();
         const { formRegistration, validationFormRegistration, trainings } = data;
+
+        //not work const errors2 = validationResult(req);
+        const errors2 = res.locals.err;
+        console.log(errors2);
+
 
         res.render('formRegistration', { formRegistration, validationFormRegistration, trainings });
 
