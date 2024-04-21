@@ -1,5 +1,6 @@
 const express = require('express');
 const hbs = require('express-handlebars');
+const initComponents = require('./componentsService');
 
 const bodyParser = require('body-parser');
 
@@ -11,6 +12,8 @@ function configureExpress() {
 
     // hbs helper
     const hbsh = hbs.create({}); // ??
+
+    initComponents(hbsh);
     // Регистрация хелпера addOne
     hbsh.handlebars.registerHelper('indexInc', function (value) {
         return value + 1;

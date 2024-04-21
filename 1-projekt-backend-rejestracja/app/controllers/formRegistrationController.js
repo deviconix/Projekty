@@ -6,7 +6,18 @@ const { validationResult } = require('express-validator');
 const index = async (req, res) => {
     try {
         const data = await formRegistrationService.getAllTrainings(req, res);// ? req and res
-        const { formRegistration, validationErr, trainings } = data;
+        const { formRegistration, validationErr, trainings, componentsData, valueFullName } = data;
+        console.log('******************* formRegistration');
+        console.log(formRegistration);
+        console.log('******************* validationErr');
+        console.log(validationErr);
+        console.log('******************* trainings - mongoDB');
+        //+  console.log(trainings);
+        console.log('******************* componentsData');
+        console.log(componentsData);
+        console.log('******************* valueFullName');
+        console.log(valueFullName);
+        console.log('*******************');
 
 
         //const validationErr = req.session.errorsSession;
@@ -16,7 +27,7 @@ const index = async (req, res) => {
         console.log(formRegistration);
 
 
-        res.render('formRegistration', { formRegistration, validationErr, trainings });
+        res.render('pageRegistration', { formRegistration, validationErr, trainings, componentsData, valueFullName });
 
     } catch (error) {
         console.error(error);
@@ -34,7 +45,8 @@ const add = async (req, res) => {
 
         // req.session.errorsSession = errors;
         // req.session.formCurrent = req.body;
-
+        // clear form
+        //---req.session.FormClear = true;
         res.redirect('/form-registration');
         // render hbs
     } catch (error) {

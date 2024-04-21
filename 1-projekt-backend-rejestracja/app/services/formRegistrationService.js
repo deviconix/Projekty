@@ -1,4 +1,7 @@
 const Training = require('../models/Training');
+//data
+const dataPlace = require('../components/data/selectPlace');
+const dataTraining = require('../components/data/selectTraining');
 //
 const { validationResult } = require('express-validator');
 
@@ -9,8 +12,31 @@ const getAllTrainings = async (req, res) => {
         const trainings = await Training.find({}).lean();
         const formRegistration = req.session.formCurrent;// serviceFormBuild.RegistrationTraining()
         const validationErr = req.session.errorsSession; // res.flash midleware and value all elements form
-        console.log(trainings);
-        return { formRegistration, validationErr, trainings };
+        //  isFormClear not let or const      console.info('isFormClear=', isFormClear);
+        let isFormClear = req.session.FormClear || false;
+        // session - ?
+        console.info('isFormClear=', isFormClear);
+
+        const componentsData = {
+            dataTraining,
+            dataPlace,
+            valueTraining: (typeof formRegistration === 'object') ? formRegistration.training : '',
+            valuePlace: (typeof formRegistration === 'object') ? formRegistration.place : '',
+            valueFullName: (typeof formRegistration === 'object') ? formRegistration.fullname : ''
+        }
+
+        // decorator
+        if (isFormClear) {
+            console.log(isFormClear, ' clear')
+            componentsData['valueTraining'] = '';
+            componentsData['valuePlace'] = '';
+            componentsData['valueFullName'] = '';
+
+            formClear = false;
+        }
+
+        //+console.log(trainings);
+        return { formRegistration, validationErr, trainings, componentsData };
     } catch (error) {
         console.log(error)
         throw new Error('Get Training err');
@@ -36,6 +62,7 @@ const createTraining = async (req, res) => {
 
                 await newTraining.save();
                 //res.redirect('/blog');
+                req.session.FormClear = true;
             } catch (err) {
                 if (err.code === 11000) {
                     res.render('userViews/signupUser', { // ??? на root

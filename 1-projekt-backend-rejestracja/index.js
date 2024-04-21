@@ -1,5 +1,8 @@
 const databaseService = require('./app/services/databaseService');
 const expressService = require('./app/services/expressService');
+
+const initComponents = require('./app/services/componentsService');
+
 const userRouter = require('./app/router/userRouter');
 const formRegistrationRouter = require('./app/router/formRegistrationRouter');
 
@@ -13,6 +16,10 @@ databaseService(MONGO_DB_URL);
 
 // Configure Express and handlebars
 const app = expressService();
+
+
+// components
+// initComponents(); in  expressService
 
 // Route root
 app.get('/', function (req, res) {
