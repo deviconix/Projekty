@@ -6,6 +6,12 @@ const bodyParser = require('body-parser');
 
 const session = require('express-session');
 
+//21.04.2024
+//const eventEmitter = require('./events/eventEmitter');
+const eventEmitter = require('../events/eventEmitters');
+require('../events/trainingEvent')(eventEmitter);
+
+
 function configureExpress() {
     const app = express();
 
