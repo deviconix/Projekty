@@ -7,24 +7,24 @@ const index = async (req, res) => {
     try {
         const data = await formRegistrationService.getAllTrainings(req, res);// ? req and res
         const { formRegistration, validationErr, trainings, componentsData, valueFullName } = data;
-        console.log('******************* formRegistration');
-        console.log(formRegistration);
-        console.log('******************* validationErr');
-        console.log(validationErr);
-        console.log('******************* trainings - mongoDB');
-        //+  console.log(trainings);
-        console.log('******************* componentsData');
-        console.log(componentsData);
-        console.log('******************* valueFullName');
-        console.log(valueFullName);
-        console.log('*******************');
+        // console.log('******************* formRegistration');
+        // console.log(formRegistration);
+        // console.log('******************* validationErr');
+        // console.log(validationErr);
+        // console.log('******************* trainings - mongoDB');
+        // //+  console.log(trainings);
+        // console.log('******************* componentsData');
+        // console.log(componentsData);
+        // console.log('******************* valueFullName');
+        // console.log(valueFullName);
+        // console.log('*******************');
 
 
-        //const validationErr = req.session.errorsSession;
-        //console.log(errors2);
-        console.log('validationErr');
-        console.log(validationErr);
-        console.log(formRegistration);
+        // //const validationErr = req.session.errorsSession;
+        // //console.log(errors2);
+        // console.log('validationErr');
+        // console.log(validationErr);
+        // console.log(formRegistration);
 
 
         res.render('pageRegistration', { formRegistration, validationErr, trainings, componentsData, valueFullName });
@@ -40,13 +40,6 @@ const add = async (req, res) => {
     try {
 
         await formRegistrationService.createTraining(req);
-
-        // const errors = validationResult(req);
-
-        // req.session.errorsSession = errors;
-        // req.session.formCurrent = req.body;
-        // clear form
-        //---req.session.FormClear = true;
         res.redirect('/form-registration');
         // render hbs
     } catch (error) {
