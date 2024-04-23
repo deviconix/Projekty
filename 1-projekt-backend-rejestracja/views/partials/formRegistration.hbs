@@ -26,7 +26,12 @@
   </div>
 
   <div class='mb-3 row justify-content-between'>
-    <button type='submit' class='col-6 btn btn-primary'>Registration</button>
-    <a href='form-registration/cancel' class='col-4 btn btn-danger'>Cancel</a>
+
+    {{#if validationData.errors}}
+      <button type='submit' class='col-6 btn btn-primary'>Registration</button>
+      <a href='form-registration/cancel' class='col-4 btn btn-danger'>Cancel</a>
+    {{else}}
+      <button type='submit' class='col btn btn-primary'>Registration</button>
+    {{/if}}
   </div>
 </form>
