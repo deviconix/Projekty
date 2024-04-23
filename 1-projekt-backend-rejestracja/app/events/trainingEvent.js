@@ -22,4 +22,22 @@ module.exports = function (eventEmitter) {
         formModel.setValidateErr(value);
 
     });
+
+    eventEmitter.on('trainingCancel', (req, res, formModel, clearDataErr) => {
+
+        console.log('[ event ] : trainingCancel');
+
+        clearDataErr(req.session);
+
+        const { fullname, training, place } = req.body;
+
+        const value = {
+            valueTraining: training,
+            valuePlace: place,
+            valueFullName: fullname,
+        };
+
+        formModel.setValidateErr(value);
+
+    });
 };

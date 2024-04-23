@@ -88,6 +88,18 @@ const createTraining = async (req, res) => {
     }
 };
 
+const cancelTraining = async (req, res) => {
+    try {
+        //
+        eventEmitter.emit('trainingCancel', req, res, TrainingForm, clearDataErr);
+    } catch (err) {
+
+        console.log('err: [formRegistrationService] => createTraining() ');
+
+        console.log(err);
+    }
+}
+
 const deleteTrainingById = async (req) => {
 
     try {
@@ -143,6 +155,26 @@ const getDataErr = async (session) => {
 
 }
 
+const clearDataErr = async (session) => {
+
+    try {
+
+        //const dataValidation = 
+
+        session.errorsSession = {};
+
+        // return dataValidation;
+
+    } catch (err) {
+
+        console.log('err: [formRegistrationService] => clearDataErr() ');
+
+        console.log(err);
+
+    }
+
+}
+
 const getDataTable = async (Model) => {
 
     try {
@@ -164,5 +196,6 @@ const getDataTable = async (Model) => {
 module.exports = {
     getAllTrainings,
     createTraining,
-    deleteTrainingById
+    deleteTrainingById,
+    cancelTraining
 };

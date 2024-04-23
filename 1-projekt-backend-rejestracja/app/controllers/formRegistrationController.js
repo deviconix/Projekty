@@ -56,8 +56,27 @@ const drop = async (req, res) => {
     }
 };
 
+// CANCEL
+const cancel = async (req, res) => {
+
+    try {
+
+        await formRegistrationService.cancelTraining(req);
+
+        res.redirect('/form-registration');
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).send('Server error');
+    }
+
+};
+
 module.exports = {
     index,
     add,
-    drop
+    drop,
+    cancel
 };
