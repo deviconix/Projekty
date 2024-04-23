@@ -7,6 +7,7 @@ const validateMiddleware = require('../middlewares/formRegistrationValidateMiddl
 router.get('/', formRegistrationController.index);
 router.post('/add', validateMiddleware, formRegistrationController.add);
 router.get('/delete/:id', formRegistrationController.drop);// current
+router.get('/cancel', formRegistrationController.cancel);// current
 //router.delete('/delete/:id', formRegistrationController.drop);// release
 
 module.exports = router;

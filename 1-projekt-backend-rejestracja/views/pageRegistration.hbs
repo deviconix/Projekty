@@ -4,13 +4,9 @@
     {{>formRegistration}}
   </div>
 
-  {{#if validationErr.errors}}
+  {{#if validationData.errors}}
     <div class='mb-5'>
-      {{#each validationErr.errors}}
-        <div class='alert alert-danger' role='alert'>
-          {{msg}}
-        </div>
-      {{/each}}
+     {{>messageValidationErr}}
     </div>
   {{/if}}
 

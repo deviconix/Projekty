@@ -1,34 +1,58 @@
+// models
 const Training = require('../models/Training');
-const trainingForm = require('../components/modelComponents/TrainingForm');
+const TrainingForm = require('../components/modelComponents/TrainingForm');
 
-//
+// validatorForm middleware
 const { validationResult } = require('express-validator');
 
-// events
+// events : { errorValidate, trainingCreated }
 const eventEmitter = require('../events/eventEmitters');
 
+
+//*********************** */
+//  private {getDataForm, getDataErr, getDataTable}
+// public : {getAllTrainings,  createTraining, deleteTrainingById}
+
+// getAllTrainings use {private:{getDataForm, getDataErr, getDataTable}}
+// createTraining use {validatorForm, session, model:{Training}, event:{ errorValidate, trainingCreated }}
+// deleteTrainingById use {model:{Training}}
+//*********************** */
+
+// public : {getAllTrainings,  createTraining, deleteTrainingById}
 const getAllTrainings = async (req, res) => {
+
     try {
-        const trainings = await Training.find({}).lean();
-        const validationErr = req.session.errorsSession; // res.flash midleware and value all elements form
-        const componentsData = trainingForm.getData();
-        return { componentsData, validationErr, trainings };
+
+        const componentsData = await getDataForm(TrainingForm);
+
+        const validationData = await getDataErr(req.session);
+
+        const tableData = await getDataTable(Training);
+
+        return { componentsData, validationData, tableData };
+
     } catch (error) {
+
         console.log(error)
+
         throw new Error('Get Training err');
+
     }
+
 };
 
 const createTraining = async (req, res) => {
 
     const errors = validationResult(req);
+    console.log(req.session);
     // check validate
     if (!errors.isEmpty()) {
         // for view - ?
         req.session.errorsSession = errors;
         req.session.formCurrent = req.body;
         // EVENT ERR
-        eventEmitter.emit('errorValidate', req, res, trainingForm);
+        console.log(req.session);
+        eventEmitter.emit('errorValidate', req, res, TrainingForm);
     } else {
         // view - ?
         req.session.errorsSession = [];
@@ -43,7 +67,7 @@ const createTraining = async (req, res) => {
                 //res.redirect('/blog');
                 // req.session.FormClear = true;
                 // EVENT OK
-                eventEmitter.emit('trainingCreated', req, res, trainingForm);
+                eventEmitter.emit('trainingCreated', req, res, TrainingForm);
             } catch (err) {
                 if (err.code === 11000) {
                     res.render('trining/add', { // ??? на root
@@ -65,15 +89,77 @@ const createTraining = async (req, res) => {
 };
 
 const deleteTrainingById = async (req) => {
-    /* Удаление товара по ID */
+
     try {
+
         await Training.findByIdAndDelete(req.params.id);
-        //res.redirect('/blog');
+
     } catch (err) {
-        console.log('service:registrarion delete');
+
+        console.log('err: [formRegistrationService] => deleteTrainingById() ');
+
+        console.log(err);
+
     }
+
 };
 
+// refactoring
+//  private {getDataForm, getDataErr, getDataTable}
+
+const getDataForm = async (modelForm) => {
+
+    try {
+
+        const dataForm = await modelForm.getData();
+
+        return dataForm;
+
+    } catch (err) {
+
+        console.log('err: [formRegistrationService] => getDataForm() ');
+
+        console.log(err);
+
+    }
+
+}
+
+const getDataErr = async (session) => {
+
+    try {
+
+        const dataValidation = await session.errorsSession
+
+        return dataValidation;
+
+    } catch (err) {
+
+        console.log('err: [formRegistrationService] => getDataErr() ');
+
+        console.log(err);
+
+    }
+
+}
+
+const getDataTable = async (Model) => {
+
+    try {
+
+        const data = await Model.find({}).lean();
+
+        return data;
+
+    } catch (err) {
+
+        console.log('err: [formRegistrationService] => getDataTable() ');
+
+        console.log(err);
+
+    }
+
+}
 
 module.exports = {
     getAllTrainings,

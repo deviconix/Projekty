@@ -1,4 +1,3 @@
-{{#if validationErr.errors}}{{/if}}
 <form action='form-registration/add' method='post' class='col-4'>
 
   <div class='mb-3'>
@@ -26,5 +25,8 @@
     </select>
   </div>
 
-  <button type='submit' class='btn btn-primary'>Registration</button>
+  <div class='mb-3 row justify-content-between'>
+    <button type='submit' class='col-6 btn btn-primary'>Registration</button>
+    <a href='form-registration/cancel' class='col-4 btn btn-danger'>Cancel</a>
+  </div>
 </form>
