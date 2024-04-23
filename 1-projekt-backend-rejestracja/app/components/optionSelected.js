@@ -1,8 +1,8 @@
 const optionSelected = {
     name: 'option',
     fn: function (value, data = []) {
-        console.log('----------- option thisValue ---------')
-        console.log(value)
+        // console.log('----------- option thisValue ---------')
+        // console.log(value)
         //console.log('----------- option thisValue end ---------')
         let content = '';
         let check = false;
@@ -11,7 +11,7 @@ const optionSelected = {
             content += `<option value="${item.value}" ${check ? "selected" : ""}>${item.text}</option>`;
         });
         // console.log(content)
-        console.log('----------- option thisValue end ---------')
+        //console.log('----------- option thisValue end ---------')
         return content;
     }
 };

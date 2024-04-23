@@ -1,7 +1,6 @@
 const Training = require('../models/Training');
-//data
-const componentDataPlace = require('../components/data/selectPlace');
-const componentDataTraining = require('../components/data/selectTraining');
+const trainingForm = require('../components/modelComponents/TrainingForm');
+
 //
 const { validationResult } = require('express-validator');
 
@@ -10,30 +9,10 @@ const eventEmitter = require('../events/eventEmitters');
 
 const getAllTrainings = async (req, res) => {
     try {
-        //console.log(req);
-        //return 'model data';
         const trainings = await Training.find({}).lean();
-        const formRegistration = req.session.formCurrent;// serviceFormBuild.RegistrationTraining()
         const validationErr = req.session.errorsSession; // res.flash midleware and value all elements form
-
-
-        const componentsData = {
-            componentDataTraining,
-            componentDataPlace,
-            valueTraining: (typeof formRegistration === 'object') ? formRegistration.training : '',
-            valuePlace: (typeof formRegistration === 'object') ? formRegistration.place : '',
-            valueFullName: (typeof formRegistration === 'object') ? formRegistration.fullname : ''
-        }
-
-        if (isFormClear) {
-            console.log(isFormClear, ' clear')
-
-
-            formClear = false;
-        }
-
-        //+console.log(trainings);
-        return { formRegistration, validationErr, trainings, componentsData };
+        const componentsData = trainingForm.getData();
+        return { componentsData, validationErr, trainings };
     } catch (error) {
         console.log(error)
         throw new Error('Get Training err');
@@ -43,13 +22,15 @@ const getAllTrainings = async (req, res) => {
 const createTraining = async (req, res) => {
 
     const errors = validationResult(req);
-    //console.log(errors);
     // check validate
     if (!errors.isEmpty()) {
+        // for view - ?
         req.session.errorsSession = errors;
         req.session.formCurrent = req.body;
-        eventEmitter.emit('errorValidate', req, res);
+        // EVENT ERR
+        eventEmitter.emit('errorValidate', req, res, trainingForm);
     } else {
+        // view - ?
         req.session.errorsSession = [];
         // check select data
         try {
@@ -60,13 +41,14 @@ const createTraining = async (req, res) => {
 
                 await newTraining.save();
                 //res.redirect('/blog');
-                req.session.FormClear = true;
-                eventEmitter.emit('trainingCreated', req, res);
+                // req.session.FormClear = true;
+                // EVENT OK
+                eventEmitter.emit('trainingCreated', req, res, trainingForm);
             } catch (err) {
                 if (err.code === 11000) {
-                    res.render('userViews/signupUser', { // ??? на root
+                    res.render('trining/add', { // ??? на root
                         error: true,
-                        message: "User already exist",
+                        message: "trining already exist",
                         user: req.body
                     });
                 } else {
@@ -77,7 +59,7 @@ const createTraining = async (req, res) => {
             }
 
         } catch (error) {
-            throw new Error('Ошибка при получении пользователей');
+            throw new Error('Error get training');
         }
     }
 };
@@ -92,41 +74,6 @@ const deleteTrainingById = async (req) => {
     }
 };
 
-// decorators
-
-const formRecovery = async (req) => {
-    try {
-        // modificate req.session.formData
-    } catch (err) {
-        console.log('service:formRecovery err');
-    }
-}
-
-const formClear = async (req) => {
-    try {
-        // req.session...
-        componentsData['valueTraining'] = '';
-        componentsData['valuePlace'] = '';
-        componentsData['valueFullName'] = '';
-
-    } catch (err) {
-        console.log('service:formClear err');
-    }
-}
-
-const getFormData = async () => {
-    const componentsData = {
-        componentDataTraining,
-        componentDataPlace,
-        valueTraining: '',
-        valuePlace: '',
-        valueFullName: ''
-        // valueTraining: (typeof formRegistration === 'object') ? formRegistration.training : '',
-        // valuePlace: (typeof formRegistration === 'object') ? formRegistration.place : '',
-        // valueFullName: (typeof formRegistration === 'object') ? formRegistration.fullname : ''
-    }
-    return componentsData;
-}
 
 module.exports = {
     getAllTrainings,

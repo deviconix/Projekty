@@ -2,9 +2,10 @@
 const componentDataPlace = require('../data/selectPlace');
 const componentDataTraining = require('../data/selectTraining');
 
+// debugger console (helper)
 const consol = {
     show: false,
-    show: true,
+    //show: true,
     log: function (mess) {
         if (this.show) { console.log(mess); }
     }
@@ -59,14 +60,16 @@ const TrainingForm = {
         return value;
 
     },
-    // publick
 
 
+    // public
     getData: function () {
         consol.log('--- getData');
+
+        // rename property for you (protocol)
         const data = {
-            componentDataPlace: this.componentDataPlace,
-            componentDataTraining: this.componentDataTraining,
+            dataPlace: this.componentDataPlace,
+            dataTraining: this.componentDataTraining,
             valueTraining: this.valueTraining,
             valuePlace: this.valuePlace,
             valueFullName: this.valueFullName,
@@ -74,20 +77,6 @@ const TrainingForm = {
         }
         consol.log(data);
         return data;
-    },
-
-    _setStateValidate: function (errObj = {}) {
-        // if errObj = empty - ok
-        consol.log('--- setStateValidate');
-        if (Object.keys(errObj).length === 0) {
-            consol.log('{null}');
-            this.clearForm();
-        } else {
-            consol.log('{data}');
-            this.setValue(errObj);
-        }
-        consol.log('--- setStateValidate ----');
-        return this;
     },
 
     setValidateOk: function () {
