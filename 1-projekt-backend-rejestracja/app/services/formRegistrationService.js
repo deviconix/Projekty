@@ -44,14 +44,14 @@ const getAllTrainings = async (req, res) => {
 const createTraining = async (req, res) => {
 
     const errors = validationResult(req);
-    console.log(req.session);
+    //console.log(req.session);
     // check validate
     if (!errors.isEmpty()) {
         // for view - ?
         req.session.errorsSession = errors;
         req.session.formCurrent = req.body;
         // EVENT ERR
-        console.log(req.session);
+        //  console.log(req.session);
         eventEmitter.emit('errorValidate', req, res, TrainingForm);
     } else {
         // view - ?

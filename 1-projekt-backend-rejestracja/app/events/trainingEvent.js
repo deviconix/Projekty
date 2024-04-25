@@ -10,7 +10,7 @@ module.exports = function (eventEmitter) {
     eventEmitter.on('errorValidate', (req, res, formModel) => {
 
         console.log('[ event ] : errorValidate');
-        console.log(req.session);
+        //console.log(req.session);
 
         const { fullname, training, place } = req.body;
 

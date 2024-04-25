@@ -44,7 +44,7 @@ const drop = async (req, res) => {
 
         await formRegistrationService.deleteTrainingById(req);
 
-        console.log('controller delete');
+        console.log('controller delete');//onDelete - ?
 
         res.redirect('/form-registration');
 
